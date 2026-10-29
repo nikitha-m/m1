@@ -1,10 +1,9 @@
 """Where does the RAM go? Loads the v1 setup and prints a memory breakdown.
 
 Usage:
-    .venv/bin/python mem_report.py
+    .venv/bin/python -m profiling.mem_report
 """
 
-import os
 import re
 import subprocess
 
@@ -13,8 +12,9 @@ from mlx.utils import tree_flatten
 from mlx_lm import load
 from mlx_lm.models.cache import make_prompt_cache
 
-from bench_spec import PROMPTS
+from benchmarks.bench_spec import PROMPTS
 from spec_decode import TARGET, prefill, speculative_generate
+from stream_model import process_gb
 
 DRAFT = "models/llama3.2-1b-mlx-4bit"
 GB = 1e9
@@ -31,15 +31,6 @@ def kv_gb(model, tokens):
     size = sum(c.nbytes for c in cache) / GB
     del cache
     return size
-
-
-def process_gb():
-    # macOS's own view of this process (includes GPU memory), from the `footprint` tool.
-    out = subprocess.run(["footprint", str(os.getpid())], capture_output=True, text=True).stdout
-    m = re.search(r"Footprint:\s*([\d.]+)\s*([KMG]B)", out)
-    if not m:
-        return None
-    return float(m.group(1)) * {"KB": 1e-6, "MB": 1e-3, "GB": 1}[m.group(2)]
 
 
 def swap_gb():

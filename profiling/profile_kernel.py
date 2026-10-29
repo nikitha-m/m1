@@ -4,7 +4,7 @@ If the time jumps between 4 and 6 tokens here too, the jump in
 profile_batch.py comes from this kernel.
 
 Usage:
-    .venv/bin/python profile_kernel.py
+    .venv/bin/python -m profiling.profile_kernel
 """
 
 import statistics

@@ -1,7 +1,7 @@
 """Measure how much GPU memory each part of speculative decoding uses.
 
 Usage:
-    .venv/bin/python measure_memory.py --draft models/llama3.2-1b-mlx-4bit
+    .venv/bin/python -m profiling.measure_memory --draft models/llama3.2-1b-mlx-4bit
 """
 
 import argparse

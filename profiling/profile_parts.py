@@ -1,7 +1,7 @@
 """Time each part of 1 layer of the 3B for 1 token, and its memory speed (GB/s).
 
 Usage:
-    .venv/bin/python profile_parts.py
+    .venv/bin/python -m profiling.profile_parts
 """
 
 import statistics

@@ -1,7 +1,7 @@
 """Measure decode speed and the real memory speed (GB/s) of an MLX model.
 
 Usage:
-    .venv/bin/python profile_decode.py --model models/llama3.2-3b-mlx-8bit
+    .venv/bin/python -m profiling.profile_decode --model models/llama3.2-3b-mlx-8bit
 """
 
 import argparse

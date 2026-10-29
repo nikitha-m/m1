@@ -2,8 +2,8 @@
 
 Same models, same k, same 200-token limit, greedy. Time = full request (prompt + answer),
 the same way bench_spec.py measures. Runs in its own venv:
-    .venv-vllm-metal/bin/python bench_vllm_spec.py               # their speculative decoding
-    .venv-vllm-metal/bin/python bench_vllm_spec.py --no-spec     # their 3B alone
+    .venv-vllm-metal/bin/python -m benchmarks.bench_vllm_spec               # their speculative decoding
+    .venv-vllm-metal/bin/python -m benchmarks.bench_vllm_spec --no-spec     # their 3B alone
 """
 
 import argparse
@@ -13,7 +13,7 @@ from pathlib import Path
 
 from vllm import LLM, SamplingParams
 
-from bench_spec import MAX_TOKENS, PROMPTS
+from benchmarks.bench_spec import MAX_TOKENS, PROMPTS
 
 TARGET = "models/llama3.2-3b-mlx-8bit"
 DRAFT = "models/llama3.2-1b-mlx-4bit"

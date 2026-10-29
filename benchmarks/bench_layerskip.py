@@ -1,7 +1,7 @@
 """Self-speculative decoding: the 3B drafts with some of its own layers, then checks with all.
 
 Usage:
-    .venv/bin/python bench_layerskip.py
+    .venv/bin/python -m benchmarks.bench_layerskip
 """
 
 import json

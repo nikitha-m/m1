@@ -4,7 +4,7 @@ If a pass with many tokens costs about the same as a pass with 1 token,
 there is "free math" that methods like lookahead decoding can use.
 
 Usage:
-    .venv/bin/python profile_batch.py
+    .venv/bin/python -m profiling.profile_batch
 """
 
 import statistics

@@ -1,7 +1,7 @@
 """Compare the 3B alone vs speculative decoding, on 10 prompts.
 
 Usage (close Cursor and Ollama first, the 8 GB M1 needs the memory):
-    .venv/bin/python bench_spec.py --draft models/llama3.2-1b-mlx-4bit --draft-tokens 2
+    .venv/bin/python -m benchmarks.bench_spec --draft models/llama3.2-1b-mlx-4bit --draft-tokens 2
 """
 
 import argparse
@@ -12,7 +12,7 @@ from pathlib import Path
 from mlx_lm import load, stream_generate
 from mlx_lm.sample_utils import make_sampler
 
-from bench import OPTIONS, PROMPTS
+from benchmarks.bench import OPTIONS, PROMPTS
 from spec_decode import TARGET, speculative_generate
 
 # The 4 prompts from bench.py, plus 6 more kinds of task.

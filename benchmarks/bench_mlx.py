@@ -1,7 +1,7 @@
 """Measure speed and memory of an MLX model, same prompts as bench.py.
 
 Usage:
-    .venv/bin/python bench_mlx.py --model models/llama3.2-3b-mlx-8bit --label mlx_8bit
+    .venv/bin/python -m benchmarks.bench_mlx --model models/llama3.2-3b-mlx-8bit --label mlx_8bit
 """
 
 import argparse
@@ -14,7 +14,7 @@ import mlx.core as mx
 from mlx_lm import load, stream_generate
 from mlx_lm.sample_utils import make_sampler
 
-from bench import OPTIONS, PROMPTS
+from benchmarks.bench import OPTIONS, PROMPTS
 
 
 def generate(model, tokenizer, prompt):
