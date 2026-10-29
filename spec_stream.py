@@ -11,9 +11,8 @@ import time
 import mlx.core as mx
 from mlx_lm import load
 
-from mem_report import process_gb
 from spec_decode import speculative_generate
-from stream_model import STATS, load_streamed
+from stream_model import STATS, load_streamed, process_gb
 
 DRAFT = "models/llama3.2-1b-mlx-4bit"
 PROMPT = "Explain how a CPU works in a short paragraph."

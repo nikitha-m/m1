@@ -9,7 +9,10 @@ Usage:
 import argparse
 import fcntl
 import json
+import os
+import re
 import struct
+import subprocess
 import time
 
 import mlx.core as mx
@@ -19,7 +22,6 @@ from mlx.utils import tree_map
 from mlx_lm import load
 from mlx_lm.models.cache import make_prompt_cache
 
-from mem_report import process_gb
 
 MODEL = "models/llama3.2-3b-mlx-8bit"
 DTYPES = {"U32": (np.uint32, None), "BF16": (np.uint16, mx.bfloat16), "F16": (np.float16, None), "F32": (np.float32, None)}
@@ -46,6 +48,14 @@ def read_from_ssd(path):
     STATS["ssd_s"] += time.perf_counter() - t
     STATS["ssd_gb"] += len(data) / 1e9
     return out
+
+def process_gb():
+    # macOS's own view of this process (includes GPU memory), from the `footprint` tool.
+    out = subprocess.run(["footprint", str(os.getpid())], capture_output=True, text=True).stdout
+    m = re.search(r"Footprint:\s*([\d.]+)\s*([KMG]B)", out)
+    if not m:
+        return None
+    return float(m.group(1)) * {"KB": 1e-6, "MB": 1e-3, "GB": 1}[m.group(2)]
 
 
 def empty(module):
