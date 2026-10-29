@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project
+CLAUDE.md
+models/
+results/
+.venv-vllm-metal/
+.vllm-metal-wheels/
+.DS_Store
